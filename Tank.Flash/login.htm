@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0023)http://idgunny.zing.vn/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="shortcut icon" href="http://img.zing.vn/gn/images/favicon.ico" type="image/x-icon">
+<title>Webgame Gunny II </title>
+<link rel="stylesheet" href="./scripts/global.css">
+<link rel="stylesheet" href="./scripts/style.css">
+<script type="text/javascript" src="./scripts/jquery.js"></script>
+<script type="text/javascript" src="./scripts/gunny_style.js"></script>
+<script type="text/javascript" src="./scripts/jquery-core.js"></script>
+<script type="text/javascript" src="./scripts/fadegallery.js"></script>
+<script src="./scripts/topbtn.js" type="text/javascript"></script>
+<link rel="Stylesheet" href="./scripts/thickbox.css">
+<script type="text/javascript" src="./scripts/thickbox.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){	
+		$("#u").focus();
+        $("#p").keypress(function (e) {
+            if (e.keyCode == 13) {
+                //AjaxGet();
+                //document.frmLogin.submit();
+                //xmlhttpPost("createLogin.ashx");
+				checklogin();
+            }
+		});
+		
+		if($('p.TextWarning').length>0){
+			var color = ['white','black'];
+			var i=0;
+			
+			var change_c = setInterval(function(){
+				if(i==color.length){
+					i=0;	
+				}
+				$('p.TextWarning > a').css('color',color[i])
+				i=i+1;
+				
+			},500);
+		}
+		
+	});
+	function checklogin()
+	 {
+		var err=0;
+		if(document.getElementById("u").value == '')
+		{
+		  //alert('Vui lòng nhập tài khoản');
+		   $("#lbError").html('Vui lòng nhập tên tài khoản!');
+		  err++;
+		}
+		else if(document.getElementById("p").value == '')
+		{
+		  //alert('Vui lòng nhập mật khẩu');
+		  $("#lbError").html('Vui lòng nhập mật khẩu!');
+		 err++;
+		}
+
+		if (err == 0)
+				 //document.frmLogin.submit();
+			xmlhttpPost("createLogin.ashx");
+			//return true;
+			return false;
+	 }
+	
+</script>
+<script language="javascript" type="text/javascript">
+     function xmlhttpPost(strURL) {
+         var xmlHttpReq = false;
+         var self = this;
+         $("#lbError").html('<img alt="" id="loading_img1" src="images/loadingAnimation.gif" />');
+             
+         // Mozilla/Safari
+         if (window.XMLHttpRequest) {
+             self.xmlHttpReq = new XMLHttpRequest();
+         }
+         // IE
+         else if (window.ActiveXObject) {
+             self.xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+         }
+         self.xmlHttpReq.open('POST', strURL, true);
+         self.xmlHttpReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+         self.xmlHttpReq.onreadystatechange = function () {
+             if (self.xmlHttpReq.readyState == 4) {
+                 updatepage(self.xmlHttpReq.responseText);
+             }
+         }
+         self.xmlHttpReq.send(getquerystring());
+     }
+
+     function getquerystring() {
+         var form = document.forms['frmLogin'];
+         var username = form.u.value;
+         var password = form.p.value;
+         qstr = 'username=' + escape(username) + '&password=' + escape(password);  // NOTE: no '?' before querystring
+         return qstr;
+     }
+
+     function updatepage(str) {
+         if (str == "ok") {
+             location.replace("LoginGame.aspx")
+             //alert(str);
+         }
+         else
+             $("#lbError").html(str);
+     }     
+    </script>
+</head>
+<body>
+
+<div id="Wrapper" class="WrapperLogin">
+  <div id="WrapperIn">
+  
+    <div id="Header">
+      <h1><a href="http://gunny.zing.vn/index.html" target="_blank" title="Trang chủ Gunny">Trang chủ Gunny</a></h1>
+      <ul class="ShortLink">
+        
+         <li><a class="TrangChu" href="http://gunny.zing.vn/index.html" title="Trang chủ Gunny" target="_blank">Trang chủ</a></li>
+		 <li><a class="DienDan" href="http://diendan.zing.vn/vng/forumdisplay.php?2181-Gunny" target="_blank" title="Diễn đàn">Diễn đàn</a></li>
+        
+		 <li><a class="HoTro" href="https://hotro1.zing.vn/homepage/index.162.html" target="_blank" title="Hỗ trợ">Hỗ trợ</a></li>
+		 <li><a class="NapXu" href="https://pay.zing.vn/zingxu/napthe.zg.html" target="_blank" title="Nạp xu">Nạp xu</a></li>
+      </ul>
+    </div>
+    <div id="MainContent">
+      <div class="News">
+    
+      
+        <iframe scrolling="no" allowtransparency="1" marginheight="0" marginwidth="0" height="250" frameborder="0" width="820" src="./scripts/gn.htm"></iframe>
+      </div>	
+      <div class="FormLogin">
+	  <a title="Đăng ký nhanh" onclick="" class="DKNhanh" href="./auth/register.aspx?type=154&amp;eventid=63&amp;bannerid=104&amp;pid=49&amp;placeValuesBeforeTB_=savedValues&amp;TB_iframe=true&amp;height=430&amp;width=366">
+	   Đăng ký nhanh</a>
+        <form method="post" action="" name="frmLogin" id="frmLogin">	
+        
+		<div class="frm_dangnhap">
+				
+			    <input type="text" name="u" id="u" value="" class="txt_box"><br>
+				<input type="password" name="p" id="p" value="" class="txt_box"><br>			
+							  	    			
+		</div>       
+		<div class="frm_button" style="top: 188px; ">             
+     <input type="submit" value="Chơi ngay" class="ChoiNgay" onclick="return checklogin();"><br />
+	 
+</div>
+
+        <div class="LuuY">
+		<p class="TextWarning" id="lbError" style="color:Red;">&nbsp;</p><br />
+            <p class="TextWarning"><a target="_blank" href="http://get.adobe.com/flashplayer/completion/?installer=Flash_Player_11_for_Other_Browsers" >Cài ngay Adobe Flash 11.4, chơi Gunny không lag!</a>
+			<br></p><p class="TextWarning">Bấm F11 để chơi Gunny toàn màn hình.
+            </p>
+
+		</div>
+	  </form>
+      </div>
+      
+    </div>
+    <div id="Footer" class="BarFooter">
+    	<ul>
+        	<li><a href="http://www.vng.com.vn/" title="Công ty VNG" target="_blank">Công ty VNG</a></li>
+            <li><a href="http://www.7road.com/index.asp" title="Công ty 7Road" target="_blank">Công ty 7Road</a></li>
+        </ul>
+    	
+    	<p>© Bản quyền thuộc công ty 7 Road. Công ty Cổ phần VNG phân phối duy nhất tại Việt Nam.<br>
+		182 Lê Đại Hành, P.15, Q.11, TP.HCM</p>        
+    </div>
+  </div>
+</div>
+</body></html>

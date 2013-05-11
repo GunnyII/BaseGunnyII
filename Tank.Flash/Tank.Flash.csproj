@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5C8C97E8-C3D1-414A-9C98-36CF75090906}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tank.Flash</RootNamespace>
+    <AssemblyName>Tank.Flash</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="auth\register.aspx" />
+    <Content Include="auth\ValidateCode.aspx" />
+    <Content Include="characterDefine.xml" />
+    <Content Include="config.xml" />
+    <Content Include="Default.aspx" />
+    <Content Include="BeginLoad.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="images\bg-list.gif" />
+    <Content Include="images\bg-news.jpg" />
+    <Content Include="images\bgevent.png" />
+    <Content Include="images\bg_all.jpg" />
+    <Content Include="images\btn-next-pre.gif" />
+    <Content Include="images\button-server-o.png" />
+    <Content Include="images\button-server.png" />
+    <Content Include="images\button-server4-hover.png" />
+    <Content Include="images\button-server4.png" />
+    <Content Include="images\choingay.png" />
+    <Content Include="images\choingay2.jpg" />
+    <Content Include="images\chon-may-chu.gif" />
+    <Content Include="images\close.gif" />
+    <Content Include="images\close1.gif" />
+    <Content Include="images\cursors\default.cur" />
+    <Content Include="images\dang-ky-nhanh.jpg" />
+    <Content Include="images\dang-ky-nhanh.png" />
+    <Content Include="images\dangky.gif" />
+    <Content Include="images\favicon.ico" />
+    <Content Include="images\gameBackGround.jpg" />
+    <Content Include="images\icon-baotri.gif" />
+    <Content Include="images\icon-hover.gif" />
+    <Content Include="images\icon-new.gif" />
+    <Content Include="images\icon-new.png" />
+    <Content Include="images\icon-nor.gif" />
+    <Content Include="images\icon-o.gif" />
+    <Content Include="images\icon-tot.png" />
+    <Content Include="images\icon.gif" />
+    <Content Include="images\icon01.png" />
+    <Content Include="images\iconRe.jpg" />
+    <Content Include="images\icon_keyboard.gif" />
+    <Content Include="images\line.gif" />
+    <Content Include="images\list-menu-hover.png" />
+    <Content Include="images\list-menu.png" />
+    <Content Include="images\listservertitle.jpg" />
+    <Content Include="images\loadingAnimation.gif" />
+    <Content Include="images\login.JPG" />
+    <Content Include="images\main-listserver.jpg" />
+    <Content Include="images\main-login.jpg" />
+    <Content Include="images\number-o.gif" />
+    <Content Include="images\number-o.png" />
+    <Content Include="images\number.gif" />
+    <Content Include="images\number.png" />
+    <Content Include="images\password.jpg" />
+    <Content Include="images\popup.png" />
+    <Content Include="images\quick-o.jpg" />
+    <Content Include="images\quick.jpg" />
+    <Content Include="images\shortlink.jpg" />
+    <Content Include="images\space.gif" />
+    <Content Include="images\title-login.gif" />
+    <Content Include="images\title.jpg" />
+    <Content Include="images\titleh2.jpg" />
+    <Content Include="images\username.jpg" />
+    <Content Include="images\zing.gif" />
+    <Content Include="images\zingid.gif" />
+    <Content Include="LoadingCount.aspx" />
+    <Content Include="login.htm" />
+    <Content Include="LoginGame.aspx" />
+    <Content Include="scripts\boi-ga-ra-balo.jpg" />
+    <Content Include="scripts\Box_event_4.css" />
+    <Content Include="scripts\close.gif" />
+    <Content Include="scripts\close2.gif" />
+    <Content Include="scripts\common.js" />
+    <Content Include="scripts\dandantang.js" />
+    <Content Include="scripts\dua-nhau-nhan-pet210x200.jpg" />
+    <Content Include="scripts\fadegallery.js" />
+    <Content Include="scripts\global.css" />
+    <Content Include="scripts\gn.htm" />
+    <Content Include="scripts\gunny-2-xuat-hien.jpg" />
+    <Content Include="scripts\gunny-ii-100-60.jpg" />
+    <Content Include="scripts\gunny_style.js" />
+    <Content Include="scripts\iconRe.gif" />
+    <Content Include="scripts\icon_keyboard.gif" />
+    <Content Include="scripts\isSafeFlash.js" />
+    <Content Include="scripts\jcarousel.js" />
+    <Content Include="scripts\jquery-core.js" />
+    <Content Include="scripts\jquery.js" />
+    <Content Include="scripts\lum-thuong-co-hai-boomerang.jpg" />
+    <Content Include="scripts\rightClick.js" />
+    <Content Include="scripts\style-frame.css" />
+    <Content Include="scripts\style.css" />
+    <Content Include="scripts\swfobject.js" />
+    <Content Include="scripts\tang-qua-210-200.jpg" />
+    <Content Include="scripts\thickbox.css" />
+    <Content Include="scripts\thickbox.js" />
+    <Content Include="scripts\topbtn.js" />
+    <Content Include="slyles\Site.css" />
+    <Content Include="smallNote.txt" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="auth\register.ashx.cs">
+      <DependentUpon>register.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="auth\register.aspx.cs">
+      <DependentUpon>register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="auth\register.aspx.designer.cs">
+      <DependentUpon>register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="auth\ValidateCode.aspx.cs">
+      <DependentUpon>ValidateCode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="auth\ValidateCode.aspx.designer.cs">
+      <DependentUpon>ValidateCode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BeginLoad.aspx.cs">
+      <DependentUpon>BeginLoad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BeginLoad.aspx.designer.cs">
+      <DependentUpon>BeginLoad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="createLogin.ashx.cs">
+      <DependentUpon>createLogin.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EndLoading.aspx.cs">
+      <DependentUpon>EndLoading.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EndLoading.aspx.designer.cs">
+      <DependentUpon>EndLoading.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingCount.aspx.cs">
+      <DependentUpon>LoadingCount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoadingCount.aspx.designer.cs">
+      <DependentUpon>LoadingCount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingManager.cs" />
+    <Compile Include="LoginGame.aspx.cs">
+      <DependentUpon>LoginGame.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginGame.aspx.designer.cs">
+      <DependentUpon>LoginGame.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bussiness\Bussiness.csproj">
+      <Project>{87C66FCB-06BB-42C0-86E1-ED814A77EBE4}</Project>
+      <Name>Bussiness</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Road.Flash\Road.Flash.csproj">
+      <Project>{310A9027-532A-4009-A903-AB6CB23E487B}</Project>
+      <Name>Road.Flash</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlDataProvider\SqlDataProvider.csproj">
+      <Project>{037F4B7B-B05B-44A9-B83E-32C21D7A7B41}</Project>
+      <Name>SqlDataProvider</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AccessError.htm" />
+    <Content Include="EndLoading.aspx" />
+    <Content Include="Error.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_code\" />
+    <Folder Include="App_Data\" />
+    <Folder Include="bin\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="createLogin.ashx" />
+    <Content Include="auth\register.ashx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>12429</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:840/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:840/</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

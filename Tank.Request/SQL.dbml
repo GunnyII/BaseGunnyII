@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Db_Tank" Class="SQLDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=GUNNY-C7686D3C2\SQLEXPRESS;Initial Catalog=Db_Tank;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Db_TankConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.SP_Account_Register" Method="SP_Account_Register">
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="PassWord" Parameter="passWord" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="NickName" Parameter="nickName" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="Sex" Parameter="sex" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Money" Parameter="money" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Gold" Parameter="gold" Type="System.Int32" DbType="Int" />
+    <Parameter Name="GiftToken" Parameter="giftToken" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Salt" Parameter="salt" Type="System.String" DbType="VarChar(5)" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
