@@ -13,6 +13,8 @@ namespace Game.Base.Packets
 {
     public interface IPacketLib
     {
+        //Create Guild
+        GSPacketIn SendConsortiaCreate(string name1, bool result, int id, string name2, string msg, int dutyLevel, string DutyName, int dutyRight, int playerid);
         #region Farm Members
         GSPacketIn SendEnterFarm(GamePlayer player);
         void SendPetGuildOptionChange();

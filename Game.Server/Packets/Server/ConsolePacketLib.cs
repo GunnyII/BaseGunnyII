@@ -24,6 +24,11 @@ namespace Game.Server.Packets.Server
         }
         #region Farm Members
         //sendEnterFarm
+        public GSPacketIn SendConsortiaCreate(string name1, bool result, int id, string name2, string msg, int dutyLevel, string DutyName, int dutyRight, int playerid)
+        {
+            throw new NotImplementedException();
+        }
+
         public GSPacketIn SendEnterFarm(GamePlayer player)
         {
             throw new NotImplementedException();

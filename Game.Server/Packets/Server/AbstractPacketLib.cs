@@ -30,6 +30,23 @@ namespace Game.Base.Packets
             m_gameClient = client;
         }
         #region Farm Members
+        //Create Guild
+        public GSPacketIn SendConsortiaCreate(string name1, bool result, int id, string name2, string msg, int dutyLevel, string DutyName, int dutyRight, int playerid)
+        {
+            var pkg = new GSPacketIn((byte)ePackageType.CONSORTIA_CMD, playerid);
+            pkg.WriteByte((byte)ConsortiaPackageType.CONSORTIA_CREATE);
+            pkg.WriteString(name1);
+            pkg.WriteBoolean(result);
+            pkg.WriteInt(id);
+            pkg.WriteString(name2);
+            pkg.WriteString(msg);
+            pkg.WriteInt(dutyLevel);
+            pkg.WriteString(DutyName ?? "");
+            pkg.WriteInt(dutyRight);
+            SendTCP(pkg);
+            return pkg;
+        }
+
         public GSPacketIn SendEnterFarm(GamePlayer Player)
         {
             GSPacketIn packet = new GSPacketIn((byte)ePackageType.FARM);
