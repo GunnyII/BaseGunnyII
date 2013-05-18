@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <config>
-    <FLASHSITE value="http://127.0.0.1/resource/flash/" />
-    <BACKUP_FLASHSITE value="http://127.0.0.1/gunnyii/flash/" />
+    <FLASHSITE value="http://192.168.56.101/resource/flash/" />
+    <BACKUP_FLASHSITE value="http://192.168.56.101/gunnyii/flash/" />
     <USE_MD5 value="false" />
-    <SITE value="http://127.0.0.1/resource/" />
-    <FIRSTPAGE value="http://127.0.0.1/gunnyii/" />
-    <REGISTER value="http://127.0.0.1/gunnyii/" />
-    <REQUEST_PATH value="http://127.0.0.1/requestii/" />
-    <LOGIN_PATH value="http://127.0.0.1/gunnyii/" siteName="Gunny II" />
-    <FILL_PATH value="http://127.0.0.1/gunnyii/" />
+    <SITE value="http://192.168.56.101/resource/" />
+    <FIRSTPAGE value="http://192.168.56.101/gunnyii/" />
+    <REGISTER value="http://192.168.56.101/gunnyii/" />
+    <REQUEST_PATH value="http://192.168.56.101/requestii/" />
+    <LOGIN_PATH value="http://192.168.56.101/gunnyii/" siteName="Gunny II" />
+    <FILL_PATH value="http://192.168.56.101/gunnyii/" />
     <POLICY_FILES>
-      <file value="http://127.0.0.1/gunnyii/flash/crossdomain.xml" />
+      <file value="http://192.168.56.101/gunnyii/flash/crossdomain.xml" />
     </POLICY_FILES>
     <GAME_BOXPIC value="7" />
     <FIGHTLIB value="true" />
@@ -25,8 +25,8 @@
     <ISTOPDERIICT value="true" />
     <COUNT_PATH value="http://gamebihandler.7road.com/ddt_game/List_BI_Click.ashx" />
     <PHP isShow="true" link="true" site="http://me.zing.vn/{id}/home" infoPath="http://assist56.gn.zing.vn/GetUserImg.aspx?uid={uid}" />
-    <OFFICIAL_SITE value="http://127.0.0.1/gunnyii/" />
-    <GAME_FORUM value="http://127.0.0.1/gunnyii/" />
+    <OFFICIAL_SITE value="http://192.168.56.101/gunnyii/" />
+    <GAME_FORUM value="http://192.168.56.101/gunnyii/" />
     <COMMUNITY_FRIEND_PATH isUser="false" value="http://ddt.the9.com/addfriend.php" />
     <COMMUNITY_INVITE_PATH value="http://ddt.the9.com/invite.php" />
     <COMMUNITY_FRIEND_LIST_PATH value="http://assist56.gn.zing.vn/Other/GetSnsFriendList" snsPath="http://s19.ddt.kaixin001.com.cn/assist/SnsServer/NotifySnsUserUpgrade" isexist="true" isexistBtnVisble="true" cmBtnVisble="false" />
