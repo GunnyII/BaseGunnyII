@@ -104,10 +104,10 @@ namespace Game.Server.Packets.Client
                     SqlDataProvider.Data.ItemInfo itemAt = client.Player.GetItemAt(bageType, slot);
                     if ((itemAt != null) && (itemAt.Count > 1))
                     {
-                        itemAt.Count--;
+                        itemAt.Count -= count;
                         bag.UpdateItem(itemAt);
                         SqlDataProvider.Data.ItemInfo item = itemAt.Clone();
-                        item.Count = 1;
+                        item.Count = count;
                         if (inventory.GetItemAt(toSlot) == null)
                         {
                             Console.WriteLine("-----Stage 6 !");
