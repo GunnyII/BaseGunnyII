@@ -78,7 +78,10 @@ namespace Game.Base.Packets
                 {
                     if(log.IsInfoEnabled)
                     {
-                        log.Info(m_client.Player.Account + " request call " + packetHandler.GetType().Name);
+                        if (m_client.Player != null)
+                        {
+                            log.Info(m_client.Player.Account + " request call " + packetHandler.GetType().Name);   
+                        }
                     }
                     packetHandler.HandlePacket(m_client, packet);
                 }
