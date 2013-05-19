@@ -76,6 +76,10 @@ namespace Game.Base.Packets
                 long start = Environment.TickCount;
                 try
                 {
+                    if(log.IsInfoEnabled)
+                    {
+                        log.Info(m_client.Player.Account + " request call " + packetHandler.GetType().Name);
+                    }
                     packetHandler.HandlePacket(m_client, packet);
                 }
                 catch (Exception e)
