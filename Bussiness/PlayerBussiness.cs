@@ -1094,6 +1094,7 @@ namespace Bussiness
             item.Hole6Level = (int)reader["Hole6Level"];
             item.Hole6Exp = (int)reader["Hole6Exp"];
             item.IsGold = (bool)reader["IsGold"];
+            item.StrengthenExp = (int)reader["StrengthenExp"];
 
             //item.IsDirty = false;
             return item;
@@ -1108,7 +1109,7 @@ namespace Bussiness
                 //{
 
                // }
-                SqlParameter[] para = new SqlParameter[32];
+                SqlParameter[] para = new SqlParameter[33];
                 para[0] = new SqlParameter("@ItemID", item.ItemID);
                 para[0].Direction = ParameterDirection.Output;
                 para[1] = new SqlParameter("@UserID", item.UserID);
@@ -1117,7 +1118,7 @@ namespace Bussiness
                 para[4] = new SqlParameter("@AgilityCompose", item.AgilityCompose);
                 para[5] = new SqlParameter("@AttackCompose", item.AttackCompose);
                 para[6] = new SqlParameter("@BeginDate", item.BeginDate);
-                para[7] = new SqlParameter("@Color", item.Color == null ? "" : item.Color);
+                para[7] = new SqlParameter("@Color", item.Color ?? "");
                 para[8] = new SqlParameter("@Count", item.Count);
                 para[9] = new SqlParameter("@DefendCompose", item.DefendCompose);
                 para[10] = new SqlParameter("@IsBinds", item.IsBinds);
@@ -1127,7 +1128,7 @@ namespace Bussiness
                 para[14] = new SqlParameter("@StrengthenLevel", item.StrengthenLevel);
                 para[15] = new SqlParameter("@ValidDate", item.ValidDate);
                 para[16] = new SqlParameter("@BagType", item.BagType);
-                para[17] = new SqlParameter("@Skin", item.Skin == null ? "" : item.Skin);
+                para[17] = new SqlParameter("@Skin", item.Skin ?? "");
                 para[18] = new SqlParameter("@IsUsed", item.IsUsed);
                 para[19] = new SqlParameter("@RemoveType", item.RemoveType);
                 para[20] = new SqlParameter("@Hole1", item.Hole1);
@@ -1143,6 +1144,7 @@ namespace Bussiness
                 para[29] = new SqlParameter("@Hole6Level", item.Hole6Level);
                 para[30] = new SqlParameter("@Hole6Exp", item.Hole6Exp);
                 para[31] = new SqlParameter("@IsGold", item.IsGold);
+                para[32] = new SqlParameter("@StrengthenExp", item.StrengthenExp);
 
                 result = db.RunProcedure("SP_Users_Items_Add", para);
                 item.ItemID = (int)para[0].Value;
@@ -1168,7 +1170,7 @@ namespace Bussiness
                 {
 
                 }
-                SqlParameter[] para = new SqlParameter[33];
+                SqlParameter[] para = new SqlParameter[34];
                 para[0] = new SqlParameter("@ItemID", item.ItemID);
                 para[1] = new SqlParameter("@UserID", item.UserID);
                 para[2] = new SqlParameter("@TemplateID", item.TemplateID);
@@ -1176,7 +1178,7 @@ namespace Bussiness
                 para[4] = new SqlParameter("@AgilityCompose", item.AgilityCompose);
                 para[5] = new SqlParameter("@AttackCompose", item.AttackCompose);
                 para[6] = new SqlParameter("@BeginDate", item.BeginDate);
-                para[7] = new SqlParameter("@Color", item.Color == null ? "" : item.Color);//物品颜色
+                para[7] = new SqlParameter("@Color", item.Color ?? "");//物品颜色
                 para[8] = new SqlParameter("@Count", item.Count);
                 para[9] = new SqlParameter("@DefendCompose", item.DefendCompose);
                 para[10] = new SqlParameter("@IsBinds", item.IsBinds);
@@ -1203,7 +1205,8 @@ namespace Bussiness
                 para[30] = new SqlParameter("@Hole6Level", item.Hole6Level);
                 para[31] = new SqlParameter("@Hole6Exp", item.Hole6Exp);
                 para[32] = new SqlParameter("@IsGold", item.IsGold);
-
+                para[33] = new SqlParameter("@StrengthenExp", item.StrengthenExp);
+                
                 result = db.RunProcedure("SP_Users_Items_Update", para);
                 item.IsDirty = false;
             }

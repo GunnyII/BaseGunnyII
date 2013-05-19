@@ -7,6 +7,7 @@ using System.Collections;
 using System.Timers;
 using System.Threading;
 using Game.Server.GameObjects;
+using Game.Server.Packets;
 using System.Reflection;
 using System.Collections.Specialized;
 using Game.Server.GameUtils;
@@ -67,6 +68,22 @@ namespace Game.Server.Managers
                 log.Error("WordMgr Init", e);                
             }
             return result;
+        }
+        public static void SendToAll(GSPacketIn pkg)
+        {
+            GamePlayer[] players = GetAllPlayers();
+            foreach (GamePlayer p in players)
+            {
+                p.Out.SendTCP(pkg);
+            }
+        }
+        public static GSPacketIn SendSysNotice(string msg)
+        {
+            GSPacketIn pkg = new GSPacketIn((byte)ePackageType.SYS_NOTICE);
+            pkg.WriteInt(1);
+            pkg.WriteString(msg);
+            SendToAll(pkg);
+            return pkg;
         }
 
         public static bool AddPlayer(int playerId, GamePlayer player)

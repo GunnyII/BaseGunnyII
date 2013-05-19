@@ -16,35 +16,30 @@ namespace Game.Server.Packets.Client
     [PacketHandler((int)ePackageType.ITEM_STRENGTHEN, "物品强化")]
     public class ItemStrengthenHandler : IPacketHandler
     {
-        private static readonly double[] rateItems = new double[] { 0.75, 3, 12, 48, 240, 768 };
-        public static int countConnect = 0;  
+        //private static readonly double[] rateItems = new double[] { 0.75, 3, 12, 48, 240, 768 };
+        //public static int countConnect = 0;
         public int HandlePacket(GameClient client, GSPacketIn packet)
         {
-            
-            if (countConnect >= 3000)
-            {
-                client.Disconnect();
-                return 0;
-            }
 
-            GSPacketIn pkg = packet.Clone();
-            pkg.ClearContext();
-
+            //if (countConnect >= 3000)
+            //{
+            //    client.Disconnect();
+            //    return 0;
+            //}
             StringBuilder str = new StringBuilder();
             bool isBinds = false;
-            int mustGold = GameProperties.PRICE_STRENGHTN_GOLD;
-            if (client.Player.PlayerCharacter.Gold < mustGold)
-            {
-                client.Out.SendMessage(eMessageType.Normal, LanguageMgr.GetTranslation("ItemStrengthenHandler.NoMoney"));
-                return 0;
-            }
-            
             bool consortia = packet.ReadBoolean();
+            bool MultiSelected = packet.ReadBoolean();
+
+            GSPacketIn pkg = packet.Clone();
+            pkg.ClearContext();           
 
             List<ItemInfo> stones = new List<ItemInfo>();
-            ItemInfo item = client.Player.StoreBag2.GetItemAt(5);
-            ItemInfo luck = null;
-            ItemInfo god = null;
+            ItemInfo stone = client.Player.StoreBag2.GetItemAt(0);
+            ItemInfo item = client.Player.StoreBag2.GetItemAt(1);
+            
+            //ItemInfo luck = null;
+            //ItemInfo god = null;
             string BeginProperty = null;
             string AddItem = "";
             using (ItemRecordBussiness db = new ItemRecordBussiness())
@@ -55,82 +50,20 @@ namespace Game.Server.Packets.Client
             if (item != null && item.Template.CanStrengthen && item.Template.CategoryID < 18 && item.Count == 1)
             {
                 isBinds = isBinds ? true : item.IsBinds;
-                str.Append(item.ItemID + ":" + item.TemplateID + ",");
-                ThreadSafeRandom random = new ThreadSafeRandom();
-                int result = 1;
-                double probability = 0.0;
-                bool isGod = false;
-                StrengthenGoodsInfo strengthenGoodsInfo2 = null;
-                StrengthenGoodsInfo strengthenGoodsInfo = StrengthenMgr.FindStrengthenGoodsInfo(item.StrengthenLevel, item.TemplateID);
-                StrengthenInfo strengthenInfo = StrengthenMgr.FindStrengthenInfo(item.StrengthenLevel + 1);
-                
-                if (strengthenInfo == null)
+                str.Append(item.ItemID + ":" + item.TemplateID + ",");                
+                double exp1 = 0;
+                double exp2 = 0;
+                double exp3 = 0;
+                double totalExp = 0;              
+                                
+                if (stone != null && stone.Template.CategoryID == 11 && (stone.Template.Property1 == 2 || stone.Template.Property1 == 35))
                 {
-                    client.Out.SendMessage(eMessageType.Normal, LanguageMgr.GetTranslation("ItemStrengthenHandler.NoStrength"));
-                    return 0;
+                    isBinds = isBinds ? true : stone.IsBinds;
+                    AddItem += "," + stone.ItemID.ToString() + ":" + stone.Template.Name;
+                    stones.Add(stone);
+                    exp1 += stone.Template.Property2;
                 }
 
-                ItemInfo godPlace = client.Player.StoreBag2.GetItemAt(3);
-                if (godPlace != null)
-                {
-                    god = client.Player.StoreBag2.GetItemAt(3);
-                    AddItem += "," + god.ItemID.ToString() + ":" + god.Template.Name;
-                    if (god != null && god.Template.CategoryID == 11 && god.Template.Property1 == 7)
-                    {
-                        isBinds = isBinds ? true : god.IsBinds;
-                        str.Append(god.ItemID + ":" + god.TemplateID + ",");
-                        isGod = true;
-                    }
-                    else
-                    {
-                        god = null;
-                    }
-                }
-
-                ItemInfo stone1 = client.Player.StoreBag2.GetItemAt(0);
-                if (stone1 != null && stone1.Template.CategoryID == 11 && (stone1.Template.Property1 == 2 || stone1.Template.Property1 == 35) && !stones.Contains(stone1))
-                {
-                    isBinds = isBinds ? true : stone1.IsBinds;
-                    AddItem += "," + stone1.ItemID.ToString() + ":" + stone1.Template.Name;
-                    stones.Add(stone1);
-                    probability += rateItems[stone1.Template.Level - 1];//stone1.Template.Property2;
-                }
-
-                ItemInfo stone2 = client.Player.StoreBag2.GetItemAt(1);
-                if (stone2 != null && stone2.Template.CategoryID == 11 && (stone2.Template.Property1 == 2 || stone2.Template.Property1 == 35) && !stones.Contains(stone2))
-                {
-                    isBinds = isBinds ? true : stone2.IsBinds;
-                    AddItem += "," + stone2.ItemID.ToString() + ":" + stone2.Template.Name;
-                    stones.Add(stone2);
-                    probability += rateItems[stone2.Template.Level - 1];
-                }
-
-                ItemInfo stone3 = client.Player.StoreBag2.GetItemAt(2);
-                if (stone3 != null && stone3.Template.CategoryID == 11 && (stone3.Template.Property1 == 2 || stone3.Template.Property1 == 35) && !stones.Contains(stone3))
-                {
-                    isBinds = isBinds ? true : stone3.IsBinds;
-                    AddItem += "," + stone3.ItemID + ":" + stone3.Template.Name;
-                    stones.Add(stone3);
-                    probability += rateItems[stone3.Template.Level - 1];
-                }
-                
-                ItemInfo luckPlace = client.Player.StoreBag2.GetItemAt(4);
-                if (luckPlace != null)
-                {
-                    luck = client.Player.StoreBag2.GetItemAt(4);
-                    AddItem += "," + luck.ItemID.ToString() + ":" + luck.Template.Name;
-                    if (luck != null && luck.Template.CategoryID == 11 && luck.Template.Property1 == 3)
-                    {
-                        isBinds = isBinds ? true : luck.IsBinds;
-                        str.Append(luck.ItemID + ":" + luck.TemplateID + ",");
-                        probability += probability * luck.Template.Property2 / 100;
-                    }
-                    
-                }
-                else
-                {
-                    probability += probability * 1 / 100;
-                }
                 bool ConsortiaRate = false;
                 ConsortiaInfo info = ConsortiaMgr.FindConsortiaInfo(client.Player.PlayerCharacter.ConsortiaID);
                 //判断是公会铁匠铺还是铁匠铺??
@@ -153,68 +86,87 @@ namespace Game.Server.Packets.Client
                         ConsortiaRate = true;
                     }
                 }
-
-                if (stones.Count >= 1)
+                if (ConsortiaRate)
                 {
-                    for (int i = 0; i < stones.Count; i++)
-                    {
-                        str.Append(stones[i].ItemID + ":" + stones[i].TemplateID + ",");
+                    //ConsortiaRateManager.instance.getConsortiaStrengthenEx(PlayerManager.Instance.Self.consortiaInfo.SmithLevel)
+                    //"ConsortiaStrengthenEx" Value="10|20|30|40|50|60|70|80|90|100"
+                    List<double> ConsortiaStrengthenEx = new List<double> { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
+                    exp2 = ConsortiaStrengthenEx[info.SmithLevel - 1] / 100 * exp1;
+                }
+                if (client.Player.PlayerCharacter.VIPExpireDay >= DateTime.Now)
+                {
+                    //_loc_4 = VipController.instance.getVIPStrengthenEx(PlayerManager.Instance.Self.VIPLevel)
+                    //"VIPStrengthenEx" Value="25|25|25|35|35|50|50|50|50|50|50|50"
+                    List<double> VIPStrengthenEx = new List<double> { 25, 25, 25, 35, 35, 50, 50, 50, 50, 50, 50, 50 };
+                    exp3 = VIPStrengthenEx[client.Player.PlayerCharacter.VIPLevel - 1] / 100 * exp1;
+                }
+                totalExp += Math.Floor(exp1 + exp2 + exp3);
+                str.Append("true");
+                List<int> StrengThenExp = new List<int> { 0, 10, 50, 150, 350, 700, 1500, 2300, 3300, 4500, 6000, 7500, 9000 };
+				
+                //Console.WriteLine("-------Total: " + stone.Count.ToString() + "| Inject: " + MultiSelected);
+                if (MultiSelected)// && stone.Count > 1)
+                {
+                    //for (int i = 0; i < stone.Count; i++)
+                    //{
+                    item.StrengthenExp += (int)totalExp * stone.Count;
+                    client.Player.StoreBag2.RemoveTemplate(stone.TemplateID, stone.Count); 
+                    //}
+                }
+                else
+                {
+                    item.StrengthenExp += (int)totalExp;
+                    client.Player.StoreBag2.RemoveTemplate(stone.TemplateID, 1);
+                   
+                }
 
-                        AbstractInventory bg = client.Player.GetItemInventory(stones[i].Template);
-                        stones[i].Count--;
-                        bg.UpdateItem(stones[i]);
-                    }
-
-                    if (luck != null)
+                if (item.StrengthenExp >= StrengThenExp[item.StrengthenLevel + 1])
+                {
+                    //for (int a = StrengThenExp[item.StrengthenLevel]; a < item.StrengthenExp; a++)
+                    int a = StrengThenExp[item.StrengthenLevel];
+                    do
                     {
-                        AbstractInventory bg = client.Player.GetItemInventory(luck.Template);
-                        bg.RemoveItem(luck);
-                    }
-
-                    if (god != null)
-                    {
-                        AbstractInventory bg = client.Player.GetItemInventory(god.Template);
-                        bg.RemoveItem(god);
-                    }
-                    if (ConsortiaRate)
-                    {
-                        probability = probability * (1 + 0.1 * info.SmithLevel);
-                    }
-                    item.IsBinds = isBinds;                   
-                    probability = (probability * 100) / strengthenInfo.Rock;
-                    probability = Math.Floor(probability * 10) / 10;
-                    client.Player.StoreBag2.ClearBag();
-                    //client.Out.SendMessage(eMessageType.Normal, LanguageMgr.GetTranslation("Probability: " + probability.ToString()));
-                    if (probability > random.Next(100))                   
-                    {
-                        str.Append("true");
-                        pkg.WriteByte(0);
-                        if (strengthenGoodsInfo != null)
+                        if (item.StrengthenLevel < 13)
                         {
-                            ItemTemplateInfo Temp = Bussiness.Managers.ItemMgr.FindItemTemplate(strengthenGoodsInfo.GainEquip);
-                            if (Temp != null)
+                            if (item.StrengthenExp >= StrengThenExp[item.StrengthenLevel + 1])
                             {
-                                ItemInfo newItem = ItemInfo.CreateFromTemplate(Temp, 1, (int)ItemAddType.Strengthen);
-                                newItem.StrengthenLevel = item.StrengthenLevel + 1;
-                                ItemInfo.OpenHole(ref newItem);
-                                StrengthenMgr.InheritProperty(item, ref newItem);
-                                client.Player.StoreBag2.AddItemTo(newItem, 5);
-                                item = newItem;
-                                if ((item.StrengthenLevel == 3 || item.StrengthenLevel == 6 || item.StrengthenLevel == 9 || item.StrengthenLevel == 12) && item.Template.CategoryID !=17)
-                                {
-                                    pkg.WriteBoolean(true);
-                                }
-                                else
-                                {
-                                    pkg.WriteBoolean(false);
-                                }
+                                item.StrengthenLevel++;
+                                item.StrengthenExp -= StrengThenExp[item.StrengthenLevel];
+                                a = StrengThenExp[item.StrengthenLevel];
+
+                            }
+                            else
+                            {
+                                break;
                             }
                         }
-                        else
-                        {                            
-                            item.StrengthenLevel++;
-                            ItemInfo.OpenHole(ref item);
-                            client.Player.StoreBag2.AddItemTo(item, 5);
+                    }
+                    while (item.StrengthenExp > a);
+                    if (item.StrengthenLevel == 12 && (item.StrengthenExp / totalExp) > 0)
+                    {
+                        stone.Count = (int)Math.Floor(item.StrengthenExp / totalExp);
+                        client.Player.StoreBag2.AddItemTo(stone, 0);
+                        client.Player.StoreBag2.UpdateItem(stone);
+                        //if (item.StrengthenLevel == 12)
+                        item.StrengthenExp = 0;
+                    }
+                    pkg.WriteByte(1);
+
+                    StrengthenGoodsInfo strengthenGoodsInfo = StrengthenMgr.FindStrengthenGoodsInfo(item.StrengthenLevel, item.TemplateID);
+                    if (strengthenGoodsInfo != null && item.Template.CategoryID == 7)
+                    {
+                        ItemTemplateInfo Temp = Bussiness.Managers.ItemMgr.FindItemTemplate(strengthenGoodsInfo.GainEquip);
+                        if (Temp != null)
+                        {
+                            ItemInfo newItem = ItemInfo.CreateFromTemplate(Temp, 1, (int)ItemAddType.Strengthen);
+                            newItem.StrengthenLevel = item.StrengthenLevel;
+                            newItem.StrengthenExp = item.StrengthenExp;
+                            ItemInfo.OpenHole(ref newItem);
+                            StrengthenMgr.InheritProperty(item, ref newItem);
+                            client.Player.StoreBag2.RemoveItemAt(1);
+                            client.Player.StoreBag2.AddItemTo(newItem, 1);
+                            //client.Player.StoreBag2.UpdateItem(newItem);
+                            item = newItem;
                             if ((item.StrengthenLevel == 3 || item.StrengthenLevel == 6 || item.StrengthenLevel == 9 || item.StrengthenLevel == 12) && item.Template.CategoryID != 17)
                             {
                                 pkg.WriteBoolean(true);
@@ -224,85 +176,55 @@ namespace Game.Server.Packets.Client
                                 pkg.WriteBoolean(false);
                             }
                         }
-                        client.Player.OnItemStrengthen(item.Template.CategoryID, item.StrengthenLevel);//任务<强化>                                               
-                        LogMgr.LogItemAdd(client.Player.PlayerCharacter.ID, LogItemType.Strengthen, BeginProperty, item, AddItem, 1);//强化日志
-                        client.Player.SaveIntoDatabase();//保存到数据库
-                        //系统广播
-                        if (item.StrengthenLevel >= 7)
-                        {
-                            string msg = LanguageMgr.GetTranslation("ItemStrengthenHandler.congratulation", client.Player.PlayerCharacter.NickName, item.Template.Name, item.StrengthenLevel);
-
-                            GSPacketIn pkg1 = new GSPacketIn((byte)ePackageType.SYS_NOTICE);
-                            pkg1.WriteInt(1);
-                            pkg1.WriteString(msg);
-                            GameServer.Instance.LoginServer.SendPacket(pkg1);
-                            GamePlayer[] players = Game.Server.Managers.WorldMgr.GetAllPlayers();
-                            foreach (GamePlayer p in players)
-                            {
-                                p.Out.SendTCP(pkg1);
-                            }
-                        }
-
                     }
                     else
                     {
-                        str.Append("false");
-                        pkg.WriteByte(1);
-                        pkg.WriteBoolean(false);
-                        if (isGod == false)
+
+                        ItemInfo.OpenHole(ref item);
+                        //client.Player.StoreBag2.AddItemTo(item, 1);
+                        if ((item.StrengthenLevel == 3 || item.StrengthenLevel == 6 || item.StrengthenLevel == 9 || item.StrengthenLevel == 12) && item.Template.CategoryID != 17)
                         {
-                            
-                            if (item.StrengthenLevel > 4)
-                            {                              
-                                strengthenGoodsInfo2 = StrengthenMgr.FindStrengthenGoodsInfo(item.StrengthenLevel - 1, item.TemplateID);
-                               
-                                if (strengthenGoodsInfo2 != null)
-                                {
-                                    ItemTemplateInfo rTemp = Bussiness.Managers.ItemMgr.FindItemTemplate(strengthenGoodsInfo2.CurrentEquip);
-                                    if (rTemp != null)
-                                    {
-                                        ItemInfo rnewItem = ItemInfo.CreateFromTemplate(rTemp, 1, (int)ItemAddType.Strengthen);
-                                        rnewItem.StrengthenLevel = item.StrengthenLevel - 1;                                        
-                                        client.Player.StoreBag2.AddItemTo(rnewItem, 5);
-                                        item = rnewItem;                                       
-                                    }
-                                }
-                                else
-                                {
-                                    item.StrengthenLevel = item.StrengthenLevel == 0 ? 0 : item.StrengthenLevel - 1;
-                                    client.Player.StoreBag2.AddItemTo(item, 5);
-                                }
-                            }                              
-                            else
-                            {                                
-                                client.Player.StoreBag2.AddItemTo(item, 5);
-                            }
+                            pkg.WriteBoolean(true);
                         }
                         else
                         {
-                            client.Player.StoreBag2.AddItemTo(item, 5);
+                            pkg.WriteBoolean(false);
                         }
-                        LogMgr.LogItemAdd(client.Player.PlayerCharacter.ID, LogItemType.Strengthen, BeginProperty, item, AddItem, 0);
-                        client.Player.SaveIntoDatabase();//保存到数据库
                     }
+                    
+                    //系统广播
+                    if (item.StrengthenLevel >= 7)
+                    {
+                        string msg = LanguageMgr.GetTranslation("ItemStrengthenHandler.congratulation", client.Player.PlayerCharacter.NickName, item.Template.Name, item.StrengthenLevel);
+                        GSPacketIn sys_notice = WorldMgr.SendSysNotice(msg);
+                        GameServer.Instance.LoginServer.SendPacket(sys_notice);
 
-                    client.Out.SendTCP(pkg);
-                    str.Append(item.StrengthenLevel);
-                    client.Player.BeginChanges();
-                    client.Player.RemoveGold(mustGold);
-                    client.Player.CommitChanges();
+                    }
                 }
                 else
                 {
-                    client.Out.SendMessage(eMessageType.Normal, LanguageMgr.GetTranslation("ItemStrengthenHandler.Content1") + result + LanguageMgr.GetTranslation("ItemStrengthenHandler.Content2"));
+                    pkg.WriteByte(1);
+                    pkg.WriteBoolean(false);
                 }
-                if (item.Place < 31)
-                    client.Player.MainBag.UpdatePlayerProperties();
+                
+                client.Player.StoreBag2.UpdateItem(item);
+                client.Player.OnItemStrengthen(item.Template.CategoryID, item.StrengthenLevel);//任务<强化>                                               
+                LogMgr.LogItemAdd(client.Player.PlayerCharacter.ID, LogItemType.Strengthen, BeginProperty, item, AddItem, 1);//强化日志
+                
+                //client.Player.SaveIntoDatabase();//保存到数据库
+                client.Out.SendTCP(pkg);
+                str.Append(item.StrengthenLevel);
+                //client.Player.BeginChanges();
+                //client.Player.CommitChanges();
             }
             else
             {
-                client.Out.SendMessage(eMessageType.Normal, LanguageMgr.GetTranslation("ItemStrengthenHandler.SystemError"));
+                client.Out.SendMessage(eMessageType.Normal, LanguageMgr.GetTranslation("ItemStrengthenHandler.Content1") + stone.Template.Name + LanguageMgr.GetTranslation("ItemStrengthenHandler.Content2"));
             }
+            if (item.Place < 31)
+            {
+                client.Player.MainBag.UpdatePlayerProperties();
+            }           
 
             return 0;
         }
