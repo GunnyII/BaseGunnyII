@@ -2,7 +2,7 @@
 <root>
   <config>
     <FLASHSITE value="http://192.168.56.101/resource/flash/" />
-    <BACKUP_FLASHSITE value="http://192.168.56.101/gunnyii/flash/" />
+    <BACKUP_FLASHSITE value="http://192.168.56.101/resource/flash/" />
     <USE_MD5 value="false" />
     <SITE value="http://192.168.56.101/resource/" />
     <FIRSTPAGE value="http://192.168.56.101/gunnyii/" />
@@ -11,7 +11,7 @@
     <LOGIN_PATH value="http://192.168.56.101/gunnyii/" siteName="Gunny II" />
     <FILL_PATH value="http://192.168.56.101/gunnyii/" />
     <POLICY_FILES>
-      <file value="http://192.168.56.101/gunnyii/flash/crossdomain.xml" />
+      <file value="http://192.168.56.101/resource/crossdomain.xml" />
     </POLICY_FILES>
     <GAME_BOXPIC value="7" />
     <FIGHTLIB value="true" />
@@ -19,18 +19,18 @@
     <TRAINER_PATH value="tutorial.swf" />
     <MUSIC_LIST value="1001,1002,1003,1004,1005,1006,1007,1008,1009,1010,1011,1012,1013,1014,1023,1024,1025,1026,1027,1028,1029,1030,1031,1032,1034,1035,1036,1037,1038,1039,1040,1059,1060,1061,1062,1063,1065,1067,1068,1069,1077" />
     <LANGUAGE value="vietnam" />
-    <PARTER_ID value="1640" />
+    <PARTER_ID value="303" />
     <STATISTIC value="true" />
     <SUCIDE_TIME value="120" />
     <ISTOPDERIICT value="true" />
     <COUNT_PATH value="http://gamebihandler.7road.com/ddt_game/List_BI_Click.ashx" />
-    <PHP isShow="true" link="true" site="http://me.zing.vn/{id}/home" infoPath="http://assist56.gn.zing.vn/GetUserImg.aspx?uid={uid}" />
+    <PHP isShow="true" link="true" site="http://me.zing.vn/{id}/home" infoPath="http://assist6.gn.zing.vn/GetUserImg.aspx?uid={uid}" />
     <OFFICIAL_SITE value="http://192.168.56.101/gunnyii/" />
     <GAME_FORUM value="http://192.168.56.101/gunnyii/" />
     <COMMUNITY_FRIEND_PATH isUser="false" value="http://ddt.the9.com/addfriend.php" />
     <COMMUNITY_INVITE_PATH value="http://ddt.the9.com/invite.php" />
-    <COMMUNITY_FRIEND_LIST_PATH value="http://assist56.gn.zing.vn/Other/GetSnsFriendList" snsPath="http://s19.ddt.kaixin001.com.cn/assist/SnsServer/NotifySnsUserUpgrade" isexist="true" isexistBtnVisble="true" cmBtnVisble="false" />
-    <COMMUNITY_INTERFACE enable="true" path="http://assist56.gn.zing.vn/Other/" shareBtnVisble="false" />
+    <COMMUNITY_FRIEND_LIST_PATH value="http://assist6.gn.zing.vn/Other/GetSnsFriendList" snsPath="http://s19.ddt.kaixin001.com.cn/assist/SnsServer/NotifySnsUserUpgrade" isexist="true" isexistBtnVisble="true" cmBtnVisble="false" />
+    <COMMUNITY_INTERFACE enable="true" path="http://assist6.gn.zing.vn/Other/" shareBtnVisble="false" />
     <COMMUNITY_FRIEND_INVITED_SWITCH value="true" invitedOnline="true" />
     <EXTERNAL_INTERFACE path="http://fb.egame.hk/GameAccess/facebook/ddt/postAction.jsp" enable="false" />
     <!--海外社区开关-->
@@ -40,7 +40,6 @@
     <FILL_JS_COMMAND value="user_ZingPay" enable="true" />
     <SHIELD_NOTICE value="false" />
     <!-- 客服系统开关 -->
-    <FEEDBACK enable="false" />
     <!--单机版新手引导的开关-->
     <TRAINER_STANDALONE value="true" />
     <!--3.3之前的新版新手引导开关-->
@@ -83,17 +82,176 @@
     <OVERSEAS>
       <OVERSEAS_COMMUNITY_TYPE value="0" callPath="" callJS="" shareBtnVisble="true" />
     </OVERSEAS>
-    <DUNGEON_OPENLIST value="1,2,3,4,5,6,7,8,9,10,11,12" />
+    <FEEDBACK enable="false" telNumber="" />
+    <DUNGEON_OPENLIST value="1,2,3,4,5,6,7,8,9,10,11,12,13" />
     <CLIENT_DOWNLOAD value="" />
     <FEEDBACK enable="false" telNumber="" />
+    <SUIT enable="false" />
   </config>
   <update>
-    <version from="300" to="301">
+    <version from="1" to="2">
       <file value="*" />
     </version>
-    <version from="301" to="302">
+    <version from="214" to="215">
+      <file value="*" />
+    </version>
+    <version from="215" to="216">
+      <file value="2.png" />
+      <file value="ui/vietnam/swf/gameOver.swf" />
+      <file value="ui/vietnam/swf/oldTutorialstepassets.swf" />
+      <file value="ui/vietnam/swf/shop.swf" />
+      <file value="ui/vietnam/xml/xml.png" />
+    </version>
+    <version from="216" to="217">
+      <file value="2.png" />
+    </version>
+    <version from="326" to="327">
+      <file value="2.png" />
+      <file value="ui/vietnam/language.txt" />
+      <file value="ui/vietnam/swf/calendar.swf" />
+      <file value="ui/vietnam/swf/core.swf" />
+      <file value="ui/vietnam/swf/game.swf" />
+      <file value="ui/vietnam/swf/roulette.swf" />
+      <file value="ui/vietnam/xml/xml.png" />
+      <file value="flash/2.png" />
+      <file value="flash/ui/vietnam/language.txt" />
+      <file value="flash/ui/vietnam/swf/calendar.swf" />
+      <file value="flash/ui/vietnam/swf/core.swf" />
+      <file value="flash/ui/vietnam/swf/game.swf" />
+      <file value="flash/ui/vietnam/swf/roulette.swf" />
+      <file value="flash/ui/vietnam/xml/xml.png" />
+    </version>
+    <version from="327" to="328">
+      <file value="*" />
+    </version>
+    <version from="328" to="329">
+      <file value="2.png" />
+      <file value="flash/2.png" />
+    </version>
+    <version from="329" to="330">
+      <file value="2.png" />
+      <file value="flash/2.png" />
+    </version>
+    <version from="330" to="331">
+      <file value="flash/2.png" />
+      <file value="flash/3.png" />
+      <file value="flash/ui/vietnam/language.txt" />
+      <file value="flash/ui/vietnam/xml/xml.png" />
+      <file value="flash/ui/vietnam/swf/corei.swf" />
+      <file value="flash/ui/vietnam/swf/room.swf" />
+      <file value="2.png" />
+      <file value="3.png" />
+      <file value="ui/vietnam/language.txt" />
+      <file value="ui/vietnam/xml/xml.png" />
+      <file value="ui/vietnam/swf/corei.swf" />
+      <file value="ui/vietnam/swf/room.swf" />
+    </version>
+    <version from="331" to="332">
+      <file value="flash/ui/vietnam/xml/xml.png" />
+      <file value="ui/vietnam/xml/xml.png" />
+    </version>
+    <version from="332" to="333">
+      <file value="flash/2.png" />
+      <file value="flash/shape.swf" />
+      <file value="flash/ui/vietnam/xml/xml.png" />
+      <file value="flash/ui/vietnam/swf/corei.swf" />
+      <file value="flash/ui/vietnam/swf/coreiconandtip.swf" />
+      <file value="2.png" />
+      <file value="shape.swf" />
+      <file value="ui/vietnam/xml/xml.png" />
+      <file value="ui/vietnam/swf/corei.swf" />
+      <file value="ui/vietnam/swf/coreiconandtip.swf" />
+    </version>
+    <version from="333" to="334">
+      <file value="*" />
+    </version>
+    <version from="334" to="335">
+      <file value="partical.xml" />
+      <file value="shape.swf" />
+      <file value="flash/partical.xml" />
+      <file value="flash/shape.swf" />
+    </version>
+    <version from="335" to="336">
+      <file value="partical.xml" />
+      <file value="shape.swf" />
+      <file value="flash/partical.xml" />
+      <file value="flash/shape.swf" />
+    </version>
+    <version from="336" to="337">
+      <file value="*" />
+      <file value="flash/*" />
+    </version>
+    <version from="337" to="338">
+      <file value="flash/partical.xml" />
+      <file value="flash/2.png" />
+      <file value="flash/shape.swf" />
+      <file value="partical.xml" />
+      <file value="2.png" />
+      <file value="shape.swf" />
+    </version>
+    <version from="338" to="339">
       <file value="flash/*" />
       <file value="*" />
+    </version>
+    <version from="339" to="340">
+      <file value="flash/*" />
+      <file value="*" />
+    </version>
+    <version from="340" to="341">
+      <file value="flash/*" />
+      <file value="*" />
+    </version>
+    <version from="341" to="342">
+      <file value="flash/*" />
+      <file value="*" />
+    </version>
+    <version from="342" to="343">
+      <file value="flash/2.png" />
+      <file value="2.png" />
+    </version>
+    <version from="343" to="344">
+      <file value="flash/2.png" />
+      <file value="flash/ui/vietnam/language.png" />
+      <file value="flash/ui/vietnam/xml/xml.png" />
+      <file value="flash/ui/vietnam/swf/ddtbagandinfo.swf" />
+      <file value="flash/ui/vietnam/swf/login.swf" />
+      <file value="2.png" />
+      <file value="ui/vietnam/language.png" />
+      <file value="ui/vietnam/xml/xml.png" />
+      <file value="ui/vietnam/swf/ddtbagandinfo.swf" />
+      <file value="ui/vietnam/swf/login.swf" />
+    </version>
+    <version from="344" to="345">
+      <file value="flash/2.png" />
+      <file value="flash/ui/vietnam/language.png" />
+      <file value="2.png" />
+      <file value="ui/vietnam/language.png" />
+    </version>
+    <version from="345" to="346">
+      <file value="flash/1.png" />
+      <file value="flash/2.png" />
+      <file value="flash/3.png" />
+      <file value="flash/ui/vietnam/language.png" />
+      <file value="flash/ui/vietnam/xml/xml.png" />
+      <file value="flash/DDT_Loading.swf" />
+      <file value="flash/Loading.swf" />
+      <file value="flash/ui/vietnam/swf/chat.swf" />
+      <file value="flash/ui/vietnam/swf/ddtawardsystem.swf" />
+      <file value="flash/ui/vietnam/swf/ddthall.swf" />
+      <file value="flash/ui/vietnam/swf/firstcore.swf" />
+      <file value="flash/ui/vietnam/swf/roadcomponent.swf" />
+      <file value="1.png" />
+      <file value="2.png" />
+      <file value="3.png" />
+      <file value="ui/vietnam/language.png" />
+      <file value="ui/vietnam/xml/xml.png" />
+      <file value="DDT_Loading.swf" />
+      <file value="Loading.swf" />
+      <file value="ui/vietnam/swf/chat.swf" />
+      <file value="ui/vietnam/swf/ddtawardsystem.swf" />
+      <file value="ui/vietnam/swf/ddthall.swf" />
+      <file value="ui/vietnam/swf/firstcore.swf" />
+      <file value="ui/vietnam/swf/roadcomponent.swf" />
     </version>
   </update>
 </root>
